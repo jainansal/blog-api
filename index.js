@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import { connectDB } from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import postRoutes from "./routes/postRoutes.js";
 
 // Configurations
 
@@ -19,7 +20,7 @@ app.use(cookieParser());
 
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
-// app.use('/post', postRoutes);
+app.use('/post', postRoutes);
 
 // Database connection
 
