@@ -25,7 +25,7 @@ export const authLogin = async (req, res) => {
 
         const { password, ...info } = user._doc;
 
-        res.status(200).json({ ...info, token });
+        res.status(200).cookie('token', token).json(info);
 
     } catch (err) {
         res.status(500).json(err);
@@ -54,8 +54,17 @@ export const authRegister = async (req, res) => {
         const token = generateToken(savedUser._id);
         const { password, ...info } = savedUser._doc;
 
-        res.status(200).json({ ...info, token });
+        res.status(200).cookie('token',token).json(info);
     } catch (err) {
         res.status(500).json(err);
     }
 };
+
+// Logout
+export const authLogout = async (req, res) => {
+    try {
+        return res.status(200).cookie('token','').json('Logged out');
+    } catch(err) {
+        return res.status(500).json({msg:err});
+    }
+}

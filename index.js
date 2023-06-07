@@ -12,7 +12,9 @@ import postRoutes from "./routes/postRoutes.js";
 
 dotenv.config();
 const app = express();
-app.use(cors());
+app.use(cors({
+    credentials: true, origin: 'https://blogin77.vercel.app'
+}));
 app.use(express.json());
 app.use(cookieParser());
 

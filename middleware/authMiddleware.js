@@ -1,9 +1,8 @@
 import jwt from 'jsonwebtoken';
-import User from '../models/UserModel.js';
 
 export const verifyToken = async (req, res, next) => {
     try {
-        let token = req.header('Authorization');
+        let token = req.cookies.token;
 
         if (!token) {
             return res.status(403).json('Access denied');

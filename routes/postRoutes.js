@@ -4,7 +4,8 @@ import {
     createPost,
     getRecent,
     getOne,
-    updateOne
+    updateOne,
+    deleteOne
 } from "../controllers/postControllers.js";
 
 const postRoutes = express.Router();
@@ -18,5 +19,8 @@ postRoutes.get('/:id', getOne);
 
 // Update
 postRoutes.put('/:id', verifyToken, updateOne);
+
+// Delete one
+postRoutes.delete('/:id', verifyToken, deleteOne);
 
 export default postRoutes;
