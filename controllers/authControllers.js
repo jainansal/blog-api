@@ -25,7 +25,7 @@ export const authLogin = async (req, res) => {
 
         const { password, ...info } = user._doc;
 
-        res.status(200).cookie('token', token, { maxAge: 3600000}).json(info);
+        res.status(200).cookie('token', token, { maxAge: 3600000, sameSite: 'none'}).json(info);
 
     } catch (err) {
         res.status(500).json(err);
@@ -54,7 +54,7 @@ export const authRegister = async (req, res) => {
         const token = generateToken(savedUser._id);
         const { password, ...info } = savedUser._doc;
 
-        res.status(200).cookie('token', token, { maxAge: 3600000}).json(info);
+        res.status(200).cookie('token', token, { maxAge: 3600000, sameSite: 'none'}).json(info);
     } catch (err) {
         res.status(500).json(err);
     }
